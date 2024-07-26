@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Socialite\AbstractUser as User;
+use MailCarrier\Facades\MailCarrier;
+
+class AuthServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any authentication / authorization services.
+     */
+    public function boot(): void
+    {
+        MailCarrier::authorizeSocialAuth(function (User $user): bool {
+            return false;
+        });
+    }
+}
